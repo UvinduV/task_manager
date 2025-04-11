@@ -30,7 +30,6 @@ public class authUserController {
             buildUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
             buildUser.setRole(userDTO.getRole());
 
-            //userService.createUser(userDTO);
             return ResponseEntity.ok(authService.signUp(buildUser));
         }catch (UserNotFoundExeption e){
             e.printStackTrace();
