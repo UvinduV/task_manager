@@ -42,4 +42,16 @@ public class TaskController {
     public TaskStatus getSelectedTask(@PathVariable ("taskID") String taskId){
         return taskService.getSelectedTask(taskId);
     }
+    @PutMapping(value = "/{taskId}")
+    public ResponseEntity<Void> updateTask(@PathVariable ("taskId") String taskId,
+                                           @RequestBody TaskDTO updatedTaskDTO){
+
+        try {
+            taskService.updateTask(taskId,updatedTaskDTO);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+    }
 }

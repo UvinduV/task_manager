@@ -11,4 +11,6 @@ public interface TaskService {
     List<TaskDTO> getAllTasks();
 
     TaskStatus getSelectedTask(String taskId);
+
+    void updateTask(String taskId, TaskDTO updatedTaskDTO);
 }
