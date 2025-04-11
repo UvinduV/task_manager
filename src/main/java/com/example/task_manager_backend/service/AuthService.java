@@ -1,6 +1,6 @@
 package com.example.task_manager_backend.service;
 
-import com.example.task_manager_backend.dto.UserDTO;
+import com.example.task_manager_backend.dto.Impl.UserDTO;
 import com.example.task_manager_backend.secure.JWTAuthResponse;
 import com.example.task_manager_backend.secure.SignIn;
 

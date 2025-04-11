@@ -2,7 +2,7 @@ package com.example.task_manager_backend.service.Impl;
 
 
 import com.example.task_manager_backend.dao.UserDao;
-import com.example.task_manager_backend.dto.UserDTO;
+import com.example.task_manager_backend.dto.Impl.UserDTO;
 import com.example.task_manager_backend.entity.Impl.User;
 import com.example.task_manager_backend.secure.JWTAuthResponse;
 import com.example.task_manager_backend.secure.SignIn;

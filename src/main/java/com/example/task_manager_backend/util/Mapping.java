@@ -1,6 +1,6 @@
 package com.example.task_manager_backend.util;
 
-import com.example.task_manager_backend.dto.UserDTO;
+import com.example.task_manager_backend.dto.Impl.UserDTO;
 import com.example.task_manager_backend.entity.Impl.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

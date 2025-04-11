@@ -1,5 +1,6 @@
-package com.example.task_manager_backend.dto;
+package com.example.task_manager_backend.dto.Impl;
 
+import com.example.task_manager_backend.dto.UserStatus;
 import com.example.task_manager_backend.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
