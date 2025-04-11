@@ -1,6 +1,7 @@
 package com.example.task_manager_backend.controller;
 
 import com.example.task_manager_backend.dto.Impl.TaskDTO;
+import com.example.task_manager_backend.dto.TaskStatus;
 import com.example.task_manager_backend.exeption.DataPersistExeption;
 import com.example.task_manager_backend.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("api/v1/tasks")
@@ -34,5 +36,10 @@ public class TaskController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<TaskDTO> getAllTasks(){
         return taskService.getAllTasks();
+    }
+
+    @GetMapping(value = "/{taskID}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public TaskStatus getSelectedTask(@PathVariable ("taskID") String taskId){
+        return taskService.getSelectedTask(taskId);
     }
 }

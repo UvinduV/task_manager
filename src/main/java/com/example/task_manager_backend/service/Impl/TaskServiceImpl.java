@@ -1,7 +1,9 @@
 package com.example.task_manager_backend.service.Impl;
 
+import com.example.task_manager_backend.customStatusCode.SelectedUserAndNoteErrorStatus;
 import com.example.task_manager_backend.dao.TaskDao;
 import com.example.task_manager_backend.dto.Impl.TaskDTO;
+import com.example.task_manager_backend.dto.TaskStatus;
 import com.example.task_manager_backend.entity.Impl.Task;
 import com.example.task_manager_backend.exeption.DataPersistExeption;
 import com.example.task_manager_backend.service.TaskService;
@@ -32,5 +34,15 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<TaskDTO> getAllTasks() {
         return taskMapping.asTaskDTOList(taskDao.findAll());
+    }
+
+    @Override
+    public TaskStatus getSelectedTask(String taskId) {
+        if(taskDao.existsById(taskId)){
+            var selectedTask = taskDao.getReferenceById(taskId);
+            return taskMapping.toTaskDTO(selectedTask);
+        }else {
+            return new SelectedUserAndNoteErrorStatus(2,"Selected Task is not found");
+        }
     }
 }
