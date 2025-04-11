@@ -1,5 +1,6 @@
 package com.example.task_manager_backend.entity.Impl;
 
+import com.example.task_manager_backend.entity.Role;
 import com.example.task_manager_backend.entity.SuperEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,4 +18,6 @@ public class User implements SuperEntity {
     private Long id;
     private String username;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
