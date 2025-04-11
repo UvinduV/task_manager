@@ -6,7 +6,7 @@ import com.example.task_manager_backend.dto.Impl.TaskDTO;
 import com.example.task_manager_backend.dto.TaskStatus;
 import com.example.task_manager_backend.entity.Impl.Task;
 import com.example.task_manager_backend.exeption.DataPersistExeption;
-import com.example.task_manager_backend.exeption.NoteNotFoundExeption;
+import com.example.task_manager_backend.exeption.TaskNotFoundExeption;
 import com.example.task_manager_backend.service.TaskService;
 import com.example.task_manager_backend.util.Mapping;
 import jakarta.transaction.Transactional;
@@ -52,13 +52,23 @@ public class TaskServiceImpl implements TaskService {
     public void updateTask(String taskId, TaskDTO updatedTaskDTO) {
         Optional<Task> findTask=taskDao.findById(taskId);
         if (!findTask.isPresent()){
-            throw new NoteNotFoundExeption("task with id " + taskId + " not found");
+            throw new TaskNotFoundExeption("task with id " + taskId + " not found");
         }else {
             findTask.get().setTitle(updatedTaskDTO.getTitle());
             findTask.get().setDescription(updatedTaskDTO.getDescription());
             findTask.get().setStatus(updatedTaskDTO.getStatus());
             findTask.get().setCreatedAt(updatedTaskDTO.getCreatedAt());
+        }
 
+    }
+
+    @Override
+    public void deleteTask(String taskId) {
+        Optional<Task>foundTask =taskDao.findById(taskId);
+        if (!foundTask.isPresent()) {
+            throw new TaskNotFoundExeption("Task with id " + taskId + " not found");
+        }else {
+            taskDao.deleteById(taskId);
         }
 
     }

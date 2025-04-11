@@ -3,6 +3,7 @@ package com.example.task_manager_backend.controller;
 import com.example.task_manager_backend.dto.Impl.TaskDTO;
 import com.example.task_manager_backend.dto.TaskStatus;
 import com.example.task_manager_backend.exeption.DataPersistExeption;
+import com.example.task_manager_backend.exeption.TaskNotFoundExeption;
 import com.example.task_manager_backend.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 @RestController
 @RequestMapping("api/v1/tasks")
@@ -53,5 +53,16 @@ public class TaskController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
+    }
+    @DeleteMapping(value = "/{taskId}")
+    public ResponseEntity<Void> deleteTask(@PathVariable ("taskId") String taskId){
+        try {
+            taskService.deleteTask(taskId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (TaskNotFoundExeption e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
